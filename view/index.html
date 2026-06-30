@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="js/baseApi.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>FileMoon</title>
+</head>
+<body>
+    <div class="bg-gray-500 min-h-screen flex justify-center items-center">
+        <div class="bg-white w-6/12 p-8 rounded-lg shadow-md">
+
+            <div class="flex justify-center items-center gap-3">
+                <i class="fa-solid fa-moon text-3xl text-gray-700"></i>
+                <h1 class="text-3xl font-semibold text-gray-800">FileMoon</h1>
+            </div>
+
+            <form class="flex flex-col space-y-2 mt-5" onsubmit="signing(event)">
+                <label>Email</label>
+                <input type="email" placeholder="email@gmail.com" class="w-full border border-gray-200 p-2 rounded-lg mt-2" id="email" name="Email" value="">
+
+                <label>Password</label>
+                <input type="password" placeholder="*********" class="w-full border border-gray-200 p-2 rounded-lg mt-2" name="Password" value="">
+
+                <button type="submit" class="w-full border border-gray-200 p-2 rounded-lg mt-2 text-purple-500">Sign In</button>
+
+                <p class="text-center">
+                    Don't have an account? <a href="#" class="text-purple-500">Sign Up</a>
+                </p>
+            </form>
+
+        </div>
+    </div>
+    <script src="js/sign.js" ></script>
+</body>
+</html>

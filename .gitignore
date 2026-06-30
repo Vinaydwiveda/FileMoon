@@ -1,0 +1,57 @@
+# Dependencies
+node_modules/
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Runtime files
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Uploads (if user-generated files)
+uploads/
+
+# Build folders
+dist/
+build/
+
+# Coverage
+coverage/
+
+# Cache
+.cache/
+.parcel-cache/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+
+# Temporary files
+tmp/
+temp/
+
+# Package manager files
+package-lock.json
+# Uncomment if you don't want to track it
+# yarn.lock
+# pnpm-lock.yaml
+
+# Misc
+*.swp
+*.swo
