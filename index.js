@@ -20,10 +20,13 @@ const mongoose = require('mongoose')
 }
  })
 const upload = multer({storage:Storage})
+
+
  const {registerUser,LoginUser} = require('./controller/user.controller.js')
  const {uploadFfile,fetchFile,deleteFile,downloadFile} = require('./controller/files.controller.js')
  const {fetchDashboardDetails } = require('./controller/dashboard.controller.js')
  const app = express()
+ const path = require('path')
  const Port = process.env.PORT || 8080;
   app.listen(Port,()=>console.log("server is listening on Port:",Port))
  
@@ -33,17 +36,41 @@ const upload = multer({storage:Storage})
     origin:"*"
  }))
 
+ const pathfinder = (filename)=>{
 
+    return path.join(process.cwd(),'view',filename)
+ }
 
+ 
+// Routes frontend
+ app.get('/login',(req,res)=>{
+    res.sendFile(pathfinder('index.html'))
+ })
+ app.get('/',(req,res)=>{
+    res.sendFile(__dirname+'/view')
+ })
+ app.get('/dashboard',(req,res)=>{
+    res.sendFile(pathfinder('app/dashboard.html'))
+ })
+ app.get('/signup',(req,res)=>{
+    res.sendFile(pathfinder('sinup.html'))
+ })
+ app.get('/files',(req,res)=>{
+    res.sendFile(pathfinder('app/files.html'))
+ })
+ app.get('/history',(req,res)=>{
+    res.sendFile(pathfinder('app/history.html'))
+ })
 
+// Routes backend
 
- app.post('/user',registerUser)
- app.post('/login',LoginUser)
- app.post('/file',upload.single('image'),uploadFfile)
- app.get('/file/:id',fetchFile)
- app.delete('/file/:id',deleteFile)
- app.get('/file/download/:id',downloadFile)
- app.get('/dashboard',fetchDashboardDetails )
+ app.post('/api/user',registerUser)
+ app.post('/api/login',LoginUser)
+ app.post('/api/file',upload.single('image'),uploadFfile)
+ app.get('/api/file/:id',fetchFile)
+ app.delete('/api/file/:id',deleteFile)
+ app.get('/api/file/download/:id',downloadFile)
+ app.get('/api/dashboard',fetchDashboardDetails )
 
 
 

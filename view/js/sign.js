@@ -16,13 +16,10 @@ const signing = async (e) => {
     console.log("Submitting payload:", payload);
 
     const response = await axios.post(
-      'http://localhost:8080/login',
+      '/api/login',
       payload
-    );
-    console.log(response.data.message)
+    )
  
-    
-
     Toastify({
            text: "Login Successfully ✅",
            duration: 3000,
@@ -42,9 +39,10 @@ const signing = async (e) => {
 }).showToast();
 
 localStorage.setItem('user',JSON.stringify(response.data.user))
+sessionStorage.setItem('token',response.data.token)
 
 setTimeout(()=>{
-  location.href = "app/dashboard.html";
+  location.href = "/dashboard";
 },2000)
 
 

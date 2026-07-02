@@ -23,21 +23,21 @@
         </div>
 
         <div class="px-6 flex flex-col gap-4 ">
-            <a href="#" >
+            <a href="/dashboard" >
                 <button class="w-full py-2.5 bg-rose-400 text-white  rounded hover:bg-rose-600">
                     <i class="ri-apps-line"></i>
                     <label>Dashboard</label>
-                </button>
+                  </button>
             </a>
 
-            <a href="#" >
-                <button class="w-full py-2.5 bg-rose-400 text-white  rounded hover:bg-rose-600">
+            <a href="/files" >
+                <button class="w-full py-2.5 bg-rose-400 text-white  rounded hover:bg-rose-600"on>
                     <i class="ri-file-line"></i>
                     <label>My Files</label>
                 </button>
             </a>
 
-            <a href="#" >
+            <a href="/history" >
                 <button class="w-full py-2.5 bg-rose-400 text-white  rounded hover:bg-rose-600">
                     <i class="ri-history-line"></i>
                     <label>History</label>
@@ -45,7 +45,7 @@
             </a>
 
             
-                <button class="w-full py-2.5 bg-rose-400 text-white  rounded hover:bg-rose-600">
+                <button class="w-full py-2.5 bg-rose-400 text-white  rounded hover:bg-rose-600" onclick="logout()">
                     <i class="ri-logout-circle-r-line"></i>
                     <label>Logout</label>
                 </button>
@@ -61,7 +61,7 @@
             <h1 class="font-semibold text-3xl">Filemoon</h1>
         </div>
        <div clas="space-x-3 p-2">
-        <button class="bg-gray-200 hover:bg-gray-300 p-2 rounded-md">
+        <button class="bg-gray-200 hover:bg-gray-300 p-2 rounded-md" onclick="logout()">
             <i class="ri-logout-circle-r-line"></i>
         </button>
          <button onclick="toggleSidebar()" class="bg-gray-200 hover:bg-gray-300 p-2 rounded-md">
@@ -256,8 +256,7 @@
     </div>
 
 </body>
-<script src="../js/layout.js" type="module">
-</script>
+<script src="../js/session.js" ></script>
 <script src="../js/files.js" type="module">
 </script>
 </html>

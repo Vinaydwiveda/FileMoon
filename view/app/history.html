@@ -24,7 +24,7 @@
         </div>
 
         <div class="px-6 flex flex-col gap-4 ">
-            <a href="/dashboard" >
+           <a href="/dashboard" >
                 <button class="w-full py-2.5 bg-rose-400 text-white  rounded hover:bg-rose-600">
                     <i class="ri-apps-line"></i>
                     <label>Dashboard</label>
@@ -44,7 +44,6 @@
                     <label>History</label>
                 </button>
             </a>
-
             
                 <button class="w-full py-2.5 bg-rose-400 text-white  rounded hover:bg-rose-600" onclick="logout()">
                     <i class="ri-logout-circle-r-line"></i>
@@ -71,72 +70,10 @@
        </div>
     </nav>
     <div class="p-6">
-        <h1 class="text-lg font-medium ">Dashboard</h1>
+        <h1 class="text-lg font-medium ">History</h1>
     <div class="mt-6 grid grid-cols-4 gap-6">
 
-     <div class=" relative bg-white rounded-lg shadow-lg h-40  flex flex-col items-center justify-center overflow-hidden">
-
-        <h1 class="text-xl font-semibold">Videos</h1>
-        <p class="text-4xl font-bold">25609</p>
-        <div 
-         class="h-[100px] w-[100px] rounded-full absolute bottom-[-50px] left-[-50px]" 
-        style="background: linear-gradient(to right, #b8cbb8 0%, #b8cbb8 0%, #b465da 0%, #cf6cc9 33%, #ee609c 66%, #ee609c 100%);"
-        >
-        <i class="ri-video-line text-white text-4xl flex flex-row-reverse p-2"></i>
-     </div>
-
-    </div>
-     
-     <div class="relative bg-white rounded-lg shadow-lg h-40  flex flex-col items-center justify-center overflow-hidden">
-
-        <h1 class="text-xl font-semibold">Audios</h1>
-        <p class="text-4xl font-bold">15662</p>
-        <div 
-         class="h-[100px] w-[100px] rounded-full absolute bottom-[-50px] left-[-50px]" 
-        style="background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);"
-        >
-        <i class="ri-folder-music-line text-white text-4xl flex flex-row-reverse p-2"></i>
-     </div>
-
-     </div>
-
-     <div class="relative bg-white rounded-lg shadow-lg h-40  flex flex-col items-center justify-center overflow-hidden">
-
-        <h1 class="text-xl font-semibold">PDF</h1>
-        <p class="text-4xl font-bold">25609</p>
-        <div 
-         class="h-[100px] w-[100px] rounded-full absolute bottom-[-50px] left-[-50px] p-2" 
-        style="background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);"
-        >
-        <i class="ri-file-pdf-2-line text-white text-4xl flex flex-row-reverse"></i>
-     </div>
-
-     </div>
-     <div class="relative bg-white rounded-lg shadow-lg h-40  flex flex-col items-center justify-center overflow-hidden">
-
-        <h1 class="text-xl font-semibold">Images</h1>
-        <p class="text-4xl font-bold">750</p>
-        <div 
-         class="h-[100px] w-[100px] rounded-full absolute bottom-[-50px] left-[-50px]" 
-        style="background-image: linear-gradient(180deg, #2af598 0%, #009efd 100%);"
-        >
-        <i class="ri-file-image-line text-white text-4xl flex flex-row-reverse p-2"></i>
-     </div>
-     </div>
-
-    <div class="col-span-2 relative bg-white rounded-lg shadow-lg  p-6  overflow-hidden">
-
-        <h1 class="text-xl font-semibold">Recents Files</h1>
-       
-
-    </div>
-
-     <div class="col-span-2 relative bg-white rounded-lg shadow-lg  p-6  overflow-hidden">
-
-        <h1 class="text-xl font-semibold">Recent Shared</h1>
-       
-
-    </div>
+   
 
 
      </div>
@@ -155,7 +92,6 @@
 </body>
 <script src="../js/session.js" ></script>
 <script src="../js/baseApi.js" ></script>
-<script src="../js/layout.js" >
 
 </script>
 </html>

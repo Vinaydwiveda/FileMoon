@@ -1,5 +1,6 @@
 const User = require('../models/user.model.js')
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 
 const registerUser =async(req,res)=>{
     try{
@@ -42,7 +43,10 @@ const LoginUser = async(req,res)=>{
         if(!isLogin)
             res.status(401).json({message:"Invailed Creadentials"})
 
-        res.status(200).json({message:"Loginn Sucessfully",user})
+       const TOKEN = await jwt.sign({id:user._id,Email:user.Email},process.env.JWT_SECRET,{expiresIn:"1d"})
+       
+       
+        res.status(200).json({message:"Loginn Sucessfully",user,token:TOKEN})
 
      }catch(err){
         res.status(500).json({message:err.message})
