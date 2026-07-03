@@ -4,11 +4,13 @@ const fs = require('fs')
 const uploadFfile =async(req,res)=>{
     try{
         const file = req.file;
+        const {Filename} =req.body;
+        console.log(file)
 
         const payload = {
-            FileName:file.filename,
+            FileName:Filename,
             Size:file.size,
-            Type:file.mimetype.split('/')[0],
+            Type:file.mimetype,
             FilePath:file.path
         }
    const filedescription =    await File.create(payload);
@@ -20,7 +22,7 @@ const uploadFfile =async(req,res)=>{
     }
 } 
 
-const fetchFile = async(req,res)=>{
+const fetchFileById = async(req,res)=>{
     try{
         
       const {id } = req.params;
@@ -81,12 +83,22 @@ const downloadFile = async(req,res)=>{
         res.status(500).json({message:err.message})
     }
 }
+
+const fetchFile = async(req,res)=>{
+    try{
+        const files = await File.find().sort({createdAt:-1}).limit(10);
+        res.status(200).json({files})
+    }catch(err){
+        res.status(500).json({message:err.message})
+    }
+}
  
 module.exports = {
     uploadFfile,
     fetchFile,
     deleteFile,
-    downloadFile
+    downloadFile,
+    fetchFileById
 }
 
 

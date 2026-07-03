@@ -10,16 +10,18 @@
 />
  
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <title>FileMoon</title>
 </head>
 <body>
-    <div class="bg-gray-100 h-screen ">
+    <div class="overflow x-auto ">
 
         <aside class="pt-6 space-y-6 fixed top-0 left-0  h-full transition-all duration-300 overflow-hidden bg-gradient-to-r from-cyan-500 to-blue-500" id="sidebar" style="width: 300px;">
-        <div class="flex flex-col items-center overflow-hidden">
+         <div class="flex flex-col items-center overflow-hidden">
             <img src="../app/img/download.jpeg" alt="Avtar" class="w-20 h-20 rounded-full mx-auto mt-5">
-            <h1 class="text-lg font-medium text-white">Vinay Dwivedi</h1>
-            <p class="text-sm text-gray-100 ">lyeboy312@gamil.com</p>
+            <h1 class="text-lg font-medium text-white" id="user">Vinay Dwivedi</h1>
+            <p class="text-sm text-gray-100 "id=userEmail>lyeboy312@gamil.com</p>
         </div>
 
         <div class="px-6 flex flex-col gap-4 ">
@@ -72,141 +74,25 @@
     <div class="p-6 space-y-4">
         <div class="flex justify-between items-center"> 
             <h1 class="text-lg font-medium ">My-Files</h1>
-            <button  class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" Onclick="toggleUploadForm()">
+            <button  class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" onclick="toggleUploadForm()">
                 <i class="ri-upload-line"></i>
                 Upload
             </button>
         </div>
-        <table class="w-full ">
-            <tr class="bg-slate-900  text-white  ">
-                <th class="font-medium py-4 text-left pl-6">
-                    FileName
-                </th class="font-medium">
-                <th >
-                    Size
-                </th >
-                <th class="font-medium">
-                    Type
-                </th>
-                <th class="font-medium">
-                    Created
-                </th>
-                <th class="font-medium">
-                    Actions
-                </th>
-            </tr>
+          <table class="w-full border-collapse">
+    <thead>
+        <tr class="bg-slate-900 text-white">
+            <th class="py-4 px-6 text-left font-medium">File Name</th>
+            <th class="py-4 px-4 text-center font-medium">Size</th>
+            <th class="py-4 px-4 text-center font-medium">Type</th>
+            <th class="py-4 px-4 text-center font-medium">Created</th>
+            <th class="py-4 px-4 text-center font-medium">Actions</th>
+        </tr>
+    </thead>
 
-            <tr class="text-gray-500 border-b border-gray-200 hover:bg-gray-100 transition-all duration-300">
-                <td class="pl-6 ">
-                    Interoduction to html.pdf
-                </td>
-                <td>
-                    1.2 MB
-                </td>
-                <td>
-                    PDF
-                </td>
-                <td>
-                    2023-06-15
-                </td>
-                <td>
-                  <div>
-                    <button class="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600">
-                        <i class="ri-download-line"></i>
-                    </button>
-                    <button class="bg-green-500 text-white px-2 py-1 rounded hover:bg-green-600">
-                        <i class="ri-share-line"></i>
-                    </button>
-                    <button class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600">
-                        <i class="ri-delete-bin-line"></i>
-                    </button>
-                  </div>
-                </td>
-            </tr>
-
-                   <tr class="text-gray-500 border-b border-gray-200 hover:bg-gray-100 transition-all duration-300">
-                <td class="pl-6 ">
-                    Interoduction to html.pdf
-                </td>
-                <td>
-                    1.2 MB
-                </td>
-                <td>
-                    PDF
-                </td>
-                <td>
-                    2023-06-15
-                </td>
-                <td>
-                  <div>
-                    <button class="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600">
-                        <i class="ri-download-line"></i>
-                    </button>
-                    <button class="bg-green-500 text-white px-2 py-1 rounded hover:bg-green-600">
-                        <i class="ri-share-line"></i>
-                    </button>
-                    <button class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600">
-                        <i class="ri-delete-bin-line"></i>
-                    </button>
-                  </div>
-                </td>
-            </tr>
-          
-                   <tr class="text-gray-500 border-b border-gray-200">
-                <td class="pl-6 ">
-                    Interoduction to html.pdf
-                </td>
-                <td>
-                    1.2 MB
-                </td>
-                <td>
-                    PDF
-                </td>
-                <td>
-                    2023-06-15
-                </td>
-                <td>
-                  <div>
-                    <button class="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600">
-                        <i class="ri-download-line"></i>
-                    </button>
-                    <button class="bg-green-500 text-white px-2 py-1 rounded hover:bg-green-600">
-                        <i class="ri-share-line"></i>
-                    </button>
-                    <button class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600">
-                        <i class="ri-delete-bin-line"></i>
-                    </button>
-                  </div>
-                </td>
-            </tr>
-
-                   <tr class="text-gray-500 border-b border-gray-200 ">
-                <td class="pl-6 ">
-                    Interoduction to html.pdf
-                </td>
-                <td>
-                    1.2 MB
-                </td>
-                <td>
-                    PDF
-                </td>
-                <td>
-                    2023-06-15
-                </td>
-                <td>
-                  <div>
-                    <button class="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600">
-                        <i class="ri-download-line"></i>
-                    </button>
-                    <button class="bg-green-500 text-white px-2 py-1 rounded hover:bg-green-600">
-                        <i class="ri-share-line"></i>
-                    </button>
-                    <button class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600">
-                        <i class="ri-delete-bin-line"></i>
-                    </button>
-                  </div>
-                </td>
-            </tr>
+           <tbody id="fileTable">
+        
+    </tbody>
 
 
 
@@ -229,15 +115,15 @@
         </button>
     </div>
     
-    <form class="mt-6 space-y-4">
+    <form class="mt-6 space-y-4" onsubmit="uploadform(event)">
         <div class="flex flex-col space-y-2 mt-4">
             <label class="text-gray-600 font-medium">FileName</label>
-            <input required type="text" class="w-full border border-gray-300 rounded-md p-2 mt-2" placeholder="Enter file name">
+            <input required type="text" class="w-full border border-gray-300 rounded-md p-2 mt-2" placeholder="Enter file name" name="Filename">
         </div>
 
         <div class="flex flex-col">
-            <label class="text-gray-600 font-medium">FileName</label>
-            <input required type="file" class="w-full border border-gray-300 rounded-md p-2 mt-2" placeholder="Enter file name">
+            <label class="text-gray-600 font-medium">Choose file</label>
+            <input required type="file" class="w-full border border-gray-300 rounded-md p-2 mt-2" placeholder="Enter file name" name="file">
         </div>
 
         <button>
@@ -249,6 +135,12 @@
 
     </form>
 
+    <div class="bg-gray-400 h-4 mt-4 rounded ">
+        <div class="bg-blue-500 h-full text-center" style="width: 0%;" id="progressBar"></div>
+           
+        </div>
+    </div>
+
 </div>
         
         
@@ -256,7 +148,8 @@
     </div>
 
 </body>
-<script src="../js/session.js" ></script>
-<script src="../js/files.js" type="module">
+<script src="../js/common.js" ></script>
+<script src="../js/baseApi.js" ></script>
+<script src="../js/files.js" >
 </script>
 </html>

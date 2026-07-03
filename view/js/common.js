@@ -3,6 +3,12 @@ if(!token){
     localStorage.clear();
     location.href="/login"
 }
+const User = JSON.parse(localStorage.getItem('user'))
+const user = document.getElementById('user');
+const email = document.getElementById('userEmail')
+
+user.innerHTML = User.Name;
+email.innerHTML=User.Email
 
 const logout = ()=>{
 
