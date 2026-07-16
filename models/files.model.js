@@ -21,6 +21,10 @@ const fileSchema = new mongoose.Schema({
         trim:true,
         required:true
     },
+    fileCreatedBy:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'user'
+    }
 
 
 },{timestamps:true})

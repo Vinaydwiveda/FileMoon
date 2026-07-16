@@ -1,7 +1,7 @@
 const drawer =document.getElementById('drawer');
 const btn = document.getElementById('btn');
 const closeBtn = document.getElementById('closeBtn');
-
+const fileCreatedBy = JSON.parse(localStorage.getItem('user'))
 
 window.onload =()=>{
     fetchFiles();   
@@ -35,6 +35,7 @@ const uploadform = async (e) => {
     const progressBar = document.getElementById("progressBar");
 
     const payload = new FormData(form);
+    payload.append("fileCreatedBy", fileCreatedBy._id);
 
     try {
 
@@ -82,7 +83,8 @@ const calculateFileSizeInMB = (sizeInBytes) => {
 const fetchFiles = async () => {
 
     try {
-        const { data } = await axios.get("/api/file");
+        console.log(fileCreatedBy._id)
+        const { data } = await axios.get(`/api/file/${fileCreatedBy._id}`);
         console.log(data);
         
         const filetable = document.getElementById("fileTable");
@@ -114,11 +116,11 @@ const fetchFiles = async () => {
                         <i class="ri-download-line"></i>
                     </button>
 
-                    <button class="bg-green-500 text-white px-2 py-1 rounded hover:bg-green-600"onclick="shareFile('${file._id}')">
+                    <button class="bg-green-500 text-white px-2 py-1 rounded hover:bg-green-600"onclick="shareFile('${file._id}' ,this ,'${file.FileName}','${file.Type}',${calculateFileSizeInMB (file.Size)})">
                         <i class="ri-share-line"></i>
                     </button>
 
-                    <button class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600" onclick="deleteFile('${file._id}',this)">
+                    <button class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600" onclick="deleteFile('${file._id}' ,this)">
                         <i class="ri-delete-bin-line"></i>
                     </button>
                 </div>
@@ -186,5 +188,116 @@ const deleteFile = async(id,button)=>{
     }finally{
         button.innerHTML ="<i class='ri-download-line'></i>"
         button.disabled = false;
+    }
+}
+
+const shareFile = async(id,button,fileName,fileType,fileSize)=>{
+    try{
+        console.log(button)
+        button.innerHTML = `<i class="fa-solid fa-spinner fa-spin fa-spin-reverse"></i>`
+        button.disabled = true;
+
+ Swal.fire({
+  title: "Share File",
+  html: `
+    <form class="flex flex-col gap-2"
+      onsubmit="shareFileSubmit(event,'${id}',this,'${fileName}','${fileType}',${fileSize})">
+
+      <label>User Email:</label>
+      <input type="email" name="user"
+        class="border border-gray-300 rounded px-2 py-1 w-full" required>
+
+      <label>Receiver Email:</label>
+      <input type="email" name="receiver"
+        class="border border-gray-300 rounded px-2 py-1 w-full" required>
+
+      <button type="submit"
+        class="bg-blue-500 text-white px-4 py-2 rounded" className="submit-button">
+        Submit
+      </button>
+
+    </form>
+
+    <small><strong>File:</strong> ${fileName}</small>
+  `,
+  showConfirmButton: false,  
+  showCancelButton: false,
+  allowOutsideClick: false
+});
+        
+    }
+    catch(err){
+        console.log(err.response?.data || err.message);
+    }finally{
+        button.innerHTML ="<i class='ri-share-line'></i>"
+        button.disabled = false;
+    }
+}
+
+
+async function shareFileSubmit(e, id, form, fileName, fileType, fileSize) {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+   const submitButton = form.querySelector('button[type="submit"]');
+    submitButton.disabled = true;
+    submitButton.innerHTML = `<i class="fa-solid fa-spinner fa-spin fa-spin-reverse"></i>`;
+
+    const user = formData.get("user");
+    const receiver = formData.get("receiver");
+
+    try {
+        
+
+      const response =  await axios.post("/api/file/share", {
+            user,
+            userId:localStorage.getItem('user')? JSON.parse(localStorage.getItem('user'))._id : null,
+            reciver: receiver,
+            _id:id,
+            filename:fileName,
+            filetype:fileType,
+            size:fileSize
+        });
+       
+        console.log(response.data);
+
+        Swal.close();
+        Toastify({
+             text: `${response.data.message}`,
+             duration: 3000,
+             gravity: "top",
+             position: "center",
+             close: true,
+            stopOnFocus: true,
+            style: {
+                background: "#22c55e",
+                width: "300px",
+                padding: "8px",
+                textAlign: "center",
+                borderRadius: "10px"
+           }
+}).showToast();
+
+
+    } catch (err) {
+        Toastify({
+       text: `${err.response ? err.response.data.message : err.message}`,
+       duration: 3000,
+       gravity: "top",
+       position: "center",
+       close: true,
+       stopOnFocus: true,
+       style: {
+          background: "#ef4444",
+          width: "300px",
+          padding: "8px",
+          textAlign: "center",
+          borderRadius: "10px"
+       }
+}).showToast();
+    }finally{
+        const submitButton = form.querySelector('button[type="submit"]');
+        submitButton.disabled = false;
+        submitButton.innerHTML = "Submit";
     }
 }

@@ -20,22 +20,20 @@ const signing = async (e) => {
       payload
     )
  
-    Toastify({
-           text: "Login Successfully ✅",
-           duration: 3000,
-           gravity: "top",       // top ya bottom
-           position: "center",    // left, center, right
-          close: true,
-           stopOnFocus: true,
-           style: {
-           background: "#22c55e",
-           width:"300px",
-           position:"absolute",
-           padding:"8px",
-           textAlign:"center",
-           borderRaddius:"10px",
-           left:"55%"
-         }
+   Toastify({
+  text: "Login Successfully ✅",
+  duration: 8000,
+  gravity: "top",
+  position: "center",
+  close: true,
+  stopOnFocus: true,
+  style: {
+    background: "#22c55e",
+    width: "300px",
+    padding: "8px",
+    textAlign: "center",
+    borderRadius: "10px"
+  }
 }).showToast();
 
 localStorage.setItem('user',JSON.stringify(response.data.user))

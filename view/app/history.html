@@ -11,6 +11,7 @@
  
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment.min.js"></script>
     <title>FileMoon</title>
 </head>
 <body>
@@ -71,12 +72,26 @@
     </nav>
     <div class="p-6">
         <h1 class="text-lg font-medium ">History</h1>
-    <div class="mt-6 grid grid-cols-4 gap-6">
+      <table class="w-full border-collapse">
+    <thead>
+        <tr class="bg-slate-900 text-white">
+            <th class="py-4 px-6 text-left font-medium">File Name</th>
+            <th class="py-4 px-4 text-center font-medium">Reciver</th>
+            <th class="py-4 px-4 text-center font-medium">Date</th>
+            
+        </tr>
+    </thead>
 
+           <tbody id="fileTable">
+                    
+      
+        
+    </tbody>
+
+
+
+        </table>
    
-
-
-     </div>
 
 
     </div>
@@ -92,6 +107,7 @@
 </body>
 <script src="../js/common.js" ></script>
 <script src="../js/baseApi.js" ></script>
+<script src="../js/history.js"></script>
 
 </script>
 </html>

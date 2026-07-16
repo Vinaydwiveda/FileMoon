@@ -23,8 +23,10 @@ const upload = multer({storage:Storage})
 
 
  const {registerUser,LoginUser} = require('./controller/user.controller.js')
- const {uploadFfile,fetchFile,deleteFile,downloadFile,fetchFileById} = require('./controller/files.controller.js')
+ const {uploadFfile,fetchFile,deleteFile,downloadFile,fetchFileById,recentUpload,recentShared} = require('./controller/files.controller.js')
  const {fetchDashboardDetails } = require('./controller/dashboard.controller.js')
+ const {shareFile} = require('./controller/Email.controller.js')
+ const {fechhistory} = require('./controller/history.controller.js')
  const app = express()
  const path = require('path')
  const Port = process.env.PORT || 8080;
@@ -67,11 +69,15 @@ const upload = multer({storage:Storage})
  app.post('/api/user',registerUser)
  app.post('/api/login',LoginUser)
  app.post('/api/file',upload.single('file'),uploadFfile)
- app.get('/api/file',fetchFile)
+ app.get('/api/file/:userId',fetchFile)
  app.get('/api/file/:id',fetchFileById)
  app.delete('/api/file/:id',deleteFile)
  app.get('/api/file/download/:id',downloadFile)
  app.get('/api/dashboard',fetchDashboardDetails )
+ app.post('/api/file/share',shareFile)
+ app.get('/api/history/:_id',fechhistory)
+ app.get('/api/recentUpload/:_id',recentUpload)
+ app.get('/api/recentShared/:_id',recentShared)
 
 
 

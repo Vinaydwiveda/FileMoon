@@ -1,17 +1,18 @@
 const File = require('../models/files.model.js')
+const history = require('../models/history.model.js')
 const fs = require('fs')
 
 const uploadFfile =async(req,res)=>{
     try{
         const file = req.file;
-        const {Filename} =req.body;
-        console.log(file)
+        const {Filename,fileCreatedBy} =req.body;
 
         const payload = {
             FileName:Filename,
             Size:file.size,
             Type:file.mimetype,
-            FilePath:file.path
+            FilePath:file.path,
+            fileCreatedBy:fileCreatedBy
         }
    const filedescription =    await File.create(payload);
 
@@ -86,19 +87,47 @@ const downloadFile = async(req,res)=>{
 
 const fetchFile = async(req,res)=>{
     try{
-        const files = await File.find().sort({createdAt:-1}).limit(10);
+        const {userId} = req.params
+        console.log(userId)
+        const files = await File.find({'fileCreatedBy':userId}).sort({createdAt:-1}).limit(10);
         res.status(200).json({files})
     }catch(err){
         res.status(500).json({message:err.message})
     }
 }
- 
+
+const recentUpload = async(req,res)=>{
+
+   try{
+    const fileCreatedBy = req.params
+       const data = await File.find({fileCreatedBy:fileCreatedBy},{FileName:1,createdAt:1,_id:0}).limit(5).sort({createdAt:-1})
+       res.status(200).json(data)
+   }catch(err){
+        res.status(500).json({message:err.message})
+   }
+
+}
+
+const recentShared = async (req,res)=>{
+
+     try{
+        const userId = req.params
+       const data = await history.find({user:userId},{reciver:1,_id:0}).populate('file','FileName').limit(5).sort({createdAt:-1})
+       res.status(200).json(data)
+   }catch(err){
+        res.status(500).json({message:err.message})
+   }
+
+
+}
 module.exports = {
     uploadFfile,
     fetchFile,
     deleteFile,
     downloadFile,
-    fetchFileById
+    fetchFileById,
+    recentUpload,
+    recentShared
 }
 
 
